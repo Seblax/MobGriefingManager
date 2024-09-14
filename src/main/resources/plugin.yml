@@ -1,7 +1,9 @@
-name: mob_griefing_manager
+name: griefing_manager
 version: '1.0-SNAPSHOT'
-main: seblax.mob.griefing.manager
+main: seblax.mob.griefing.Main
 api-version: '1.20'
 authors: [ Seblax ]
 description: Enables the administrator to manage mob griefing behavior on an individual basis for each mob.
 website: seblax.sytes.net
+commands:
+  mobgriefing:

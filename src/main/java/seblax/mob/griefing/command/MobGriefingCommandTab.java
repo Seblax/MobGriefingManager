@@ -20,7 +20,10 @@ public class MobGriefingCommandTab implements TabCompleter {
             res.add("set");
             res.add("reset");
         }else if(index == 2) {
-            res = Main.GriefingMobs;
+            Main.GriefingMobs.forEach(x -> res.add(x.toLowerCase()));
+        }else if(index == 3 && strings[0].equals("set")) {
+            res.add("true");
+            res.add("false");
         }
 
         return res;

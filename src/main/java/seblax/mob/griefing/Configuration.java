@@ -1,10 +1,9 @@
 package seblax.mob.griefing;
 
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
-import utils.ToConsole;
+import utils.chatmessages.ToConsole;
 
 import java.io.File;
 import java.util.Arrays;
@@ -20,9 +19,10 @@ public class Configuration {
             initiateFile("config.yml");
 
         }catch (Exception e){
-            System.out.printf("%s %s %n",
-                    ToConsole.error,
-                    ToConsole.of("Error a la hora de crear el archivo").red());
+            ToConsole.of(ToConsole.error())
+                    .add("Error when try to create config.yml file.")
+                    .red()
+                    .send();
             e.printStackTrace();
         }
     }
@@ -49,9 +49,7 @@ public class Configuration {
     }
 
     public static void DefaultConfiguration(){
-
-        System.out.printf("%s Set 'Mob Griefing' to its default configuration.%n",
-                ToConsole.config);
+        ToConsole.of(ToConsole.config()).add("Set 'Mob Griefing' to its default configuration.").send();
         try{
             for (var i : EntityType.values()){
                 modifyFile.set(i.name(),true);
@@ -59,9 +57,7 @@ public class Configuration {
 
             modifyFile.save(file);
         }catch (Exception e){
-            System.out.printf("%s %s %n",
-                    ToConsole.error,
-                    ToConsole.of("Error trying to set the default configuration.").red());
+            ToConsole.of(ToConsole.error()).add("Error trying to set the default configuration.").red().send();
             e.printStackTrace();
         }
     }
@@ -77,16 +73,16 @@ public class Configuration {
         try{
             modifyFile.set(name, b);
             modifyFile.save(file);
-
-            System.out.printf("[%s] %s can break blocks: %s.%n",
-                    ToConsole.config,
-                    ToConsole.of(name).bold().green(),
-                    b ? ToConsole.of("Yes").green(): ToConsole.of("No").red());
-
         }catch (Exception e){
-            System.out.printf("%s %s. %n",
-                    ToConsole.error,
-                    ToConsole.of("Error changing " + name +  " to current value: " + b));
+            ToConsole.of(ToConsole.error())
+                    .add("Error changing ")
+                    .red()
+                    .add(name)
+                    .white()
+                    .add(" to current value: ")
+                    .add(b ?
+                            ToConsole.of("True").green().toString() :
+                            ToConsole.of("False").red().toString());
             e.printStackTrace();
         }
     }
@@ -109,16 +105,25 @@ public class Configuration {
         SetMobConfig(mob, true);
     }
 
-    public static Boolean getMobConfig(EntityType mob){
+    public static Boolean GetMobConfig(String mobName){
+        EntityType mob = MobTypeParser(mobName);
+        return GetMobConfig(mob);
+    }
+
+    public static Boolean GetMobConfig(EntityType mob){
         Boolean res = null;
-        String name = mob.getName();
+        String name = mob.name();
 
         try {
             res = modifyFile.getBoolean(name);
         }catch (Exception e){
-            System.out.printf("%s %s. %n",
-                    ToConsole.error,
-                    "Error trying get " + name + " configuration");
+            ToConsole.of(ToConsole.error())
+                    .add("Error trying get ")
+                    .red()
+                    .add(name)
+                    .white()
+                    .add(" configuration")
+                    .red();
             e.printStackTrace();
         }
         return res;

@@ -1,13 +1,12 @@
 package seblax.mob.griefing;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import utils.chatmessages.ToChat;
-import utils.chatmessages.ToConsole;
+import seblax.utils.chatmessages.ToChat;
+import seblax.utils.chatmessages.ToConsole;
 
 public class MobEventsListener implements Listener {
 

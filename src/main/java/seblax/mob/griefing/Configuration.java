@@ -3,7 +3,7 @@ package seblax.mob.griefing;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.Plugin;
-import utils.chatmessages.ToConsole;
+import seblax.utils.chatmessages.ToConsole;
 
 import java.io.File;
 import java.util.Arrays;

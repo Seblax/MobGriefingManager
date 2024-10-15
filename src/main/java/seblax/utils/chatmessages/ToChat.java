@@ -1,13 +1,12 @@
-package utils.chatmessages;
+package seblax.utils.chatmessages;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 public class ToChat extends IMessage {
-    private static final ColorPaletteChat ColorPaletteChat = new ColorPaletteChat();
 
     ToChat(String t){
-        super(t, ColorPaletteChat);
+        super(t, new IMessagePalette(PaletteChat.class){});
     }
 
     public static ToChat of(IMessage s){
@@ -26,59 +25,47 @@ public class ToChat extends IMessage {
     }
 
     public IMessage italic(){
-        return modifyMessage(ColorPaletteChat.Italic);
+        return modifyMessage(PaletteChat.ITALIC.getCode());
     }
 
     public IMessage magic(){
-        return modifyMessage(ColorPaletteChat.Magic);
+        return modifyMessage(PaletteChat.MAGIC.getCode());
     }
 
     public IMessage strikethrough(){
-        return modifyMessage(ColorPaletteChat.StrikeThrough);
+        return modifyMessage(PaletteChat.STRIKETHROUGH.getCode());
     }
 
     public IMessage darkAqua(){
-        return modifyMessage(ColorPaletteChat.DarkAqua);
+        return modifyMessage(PaletteChat.DARKAQUA.getCode());
     }
 
     public IMessage darkBlue(){
-        return modifyMessage(ColorPaletteChat.DarkBlue);
+        return modifyMessage(PaletteChat.DARKBLUE.getCode());
     }
 
     public IMessage darkGreen(){
-        return modifyMessage(ColorPaletteChat.DarkGreen);
+        return modifyMessage(PaletteChat.DARKGREEN.getCode());
     }
 
     public IMessage darkGrey(){
-        return modifyMessage(ColorPaletteChat.DarkGray);
+        return modifyMessage(PaletteChat.DARKGRAY.getCode());
     }
 
     public IMessage darkPurple(){
-        return modifyMessage(ColorPaletteChat.DarkPurple);
+        return modifyMessage(PaletteChat.DARKPURPLE.getCode());
     }
 
     public IMessage darkRed(){
-        return modifyMessage(ColorPaletteChat.DarkRed);
+        return modifyMessage(PaletteChat.DARKRED.getCode());
     }
 
     public IMessage gold(){
-        return modifyMessage(ColorPaletteChat.Gold);
+        return modifyMessage(PaletteChat.GOLD.getCode());
     }
 
     public IMessage gray(){
-        return modifyMessage(ColorPaletteChat.Gray);
-    }
-
-    public static String error(){
-        return of("").messageColors.error;
-    }
-
-    public static String data(){
-        return of("").messageColors.data;
-    }
-
-    public static String config(){
-        return of("").messageColors.config;
+        return modifyMessage(PaletteChat.GRAY.getCode());
     }
 
     public IMessage customChatColor(String hexColor){
@@ -87,7 +74,7 @@ public class ToChat extends IMessage {
             return add(net.md_5.bungee.api.ChatColor.of(hexColor).toString());
         }catch (Exception e){
             System.out.printf("%s Error trying to create a chat color with: %s",
-                    ToConsole.of().error(),
+                    ToConsole.of(ToConsole.error()),
                     hexColor);
             e.printStackTrace();
             return this;

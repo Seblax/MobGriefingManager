@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import seblax.mob.griefing.Configuration;
-import utils.chatmessages.*;
+import seblax.utils.chatmessages.ToChat;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -64,7 +64,7 @@ public class MobGriefingCommand implements CommandExecutor {
                 break;
             case "set":
                 if(strings.length < 3){
-                    ToChat.of(ToChat.error()).add("Wrong Set statement: needs true or false").send();
+                    ToChat.of(ToChat.error()).add("Wrong Set statement: needs true or false").red().send();
                     return;
                 }
                 OnSet(strings[1],strings[2]);
@@ -81,7 +81,7 @@ public class MobGriefingCommand implements CommandExecutor {
         if(b.equals("true") || b.equals("false")){
             OnSet(entity,Boolean.parseBoolean(b));
         }else {
-            ToChat.of(ToChat.error()).add("Wrong Set statement: must be 'true' or 'false'").send();
+            ToChat.of(ToChat.error()).add("Wrong Set statement: must be 'true' or 'false'").red().send();
         }
     }
 
